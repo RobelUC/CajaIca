@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Caja Ica — Clientes</string>
+    <string name="entity_trade">CAJA ICA</string>
+    <string name="entity_subtitle">CMAC Ica — Banca móvil</string>
+    <string name="login_title">Ingresa a tu cuenta</string>
+    <string name="field_email">Correo electrónico</string>
+    <string name="field_name">Nombre completo</string>
+    <string name="field_password">Contraseña</string>
+    <string name="field_confirm_password">Confirmar contraseña</string>
+    <string name="action_login">Iniciar sesión</string>
+    <string name="action_register">Registrarse</string>
+    <string name="action_create_account">Crear cuenta</string>
+    <string name="action_back">Volver</string>
+    <string name="register_title">Crear cuenta</string>
+    <string name="login_demo_hint">Usa tu correo y contraseña registrados en Firebase.</string>
+    <string name="cd_branding_banner">Referencia visual Caja Ica</string>
+
+    <string name="dashboard_title">Inicio</string>
+    <string name="dashboard_greeting">Hola, %1$s</string>
+    <string name="balance_total_label">Saldo total consolidado</string>
+    <string name="movements_section">Últimos movimientos</string>
+    <string name="movements_empty">Aún no hay movimientos en tu cuenta.</string>
+    <string name="action_logout">Salir</string>
+    <string name="action_profile">Perfil</string>
+</resources>
