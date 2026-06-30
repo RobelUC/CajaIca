@@ -15,7 +15,6 @@
 *.apk
 *.ap_
 *.aab
-google-services.json
 hs_err_pid*.log
 
 # Project exclude paths

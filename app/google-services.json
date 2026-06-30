@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "582162041281",
+    "project_id": "cajaica",
+    "storage_bucket": "cajaica.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582162041281:android:284525faf937012a468740",
+        "android_client_info": {
+          "package_name": "pe.cmacica.clientes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNTT3tCWuU2ss-h4LxNKaWr4oVQmbGkm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
