@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "solicitudes_credito",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "clienteUid", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

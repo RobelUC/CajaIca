@@ -1,7 +1,6 @@
 package pe.cmacica.clientes.ui.screens
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -22,25 +22,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
+import android.app.Application
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import pe.cmacica.clientes.R
 import pe.cmacica.clientes.ui.theme.CajaIcaGold
 import pe.cmacica.clientes.ui.theme.CajaIcaRed
@@ -50,9 +49,11 @@ import pe.cmacica.clientes.ui.viewmodel.LoginViewModel
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
     onRegister: () -> Unit,
-    viewModel: LoginViewModel = viewModel()
+    viewModel: LoginViewModel = viewModel(
+        factory = LoginViewModel.factory(LocalContext.current.applicationContext as Application)
+    )
 ) {
-    var email by remember { mutableStateOf("") }
+    var documento by remember { mutableStateOf("") }
     var clave by remember { mutableStateOf("") }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -83,16 +84,7 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Image(
-                painter = painterResource(id = R.drawable.img_caja_ica_referencia),
-                contentDescription = stringResource(R.string.cd_branding_banner),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp),
-                contentScale = ContentScale.Fit
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(48.dp))
             Text(
                 text = stringResource(R.string.entity_trade),
                 style = MaterialTheme.typography.displayLarge,
@@ -114,13 +106,13 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
+                value = documento,
+                onValueChange = { documento = it.filter { c -> c.isDigit() } },
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text(stringResource(R.string.field_email)) },
+                label = { Text(stringResource(R.string.field_documento)) },
                 singleLine = true,
                 enabled = !uiState.isLoading,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = CajaIcaRed,
                     focusedLabelColor = CajaIcaRed,
@@ -130,13 +122,14 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedTextField(
                 value = clave,
-                onValueChange = { clave = it },
+                onValueChange = { clave = it.filter { c -> c.isDigit() }.take(12) },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text(stringResource(R.string.field_password)) },
+                supportingText = { Text(stringResource(R.string.field_password_hint)) },
                 singleLine = true,
                 enabled = !uiState.isLoading,
                 visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = CajaIcaRed,
                     focusedLabelColor = CajaIcaRed,
@@ -145,7 +138,7 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(28.dp))
             Button(
-                onClick = { viewModel.login(email, clave) },
+                onClick = { viewModel.login(documento, clave) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),

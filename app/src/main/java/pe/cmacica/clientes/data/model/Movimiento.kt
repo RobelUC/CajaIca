@@ -5,5 +5,6 @@ data class Movimiento(
     val titulo: String = "",
     val fecha: String = "",
     val monto: Double = 0.0,
-    val esIngreso: Boolean = false
+    val esIngreso: Boolean = false,
+    val timestamp: Long = 0L
 )

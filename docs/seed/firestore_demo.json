@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "proyecto": "cajaica",
+    "version": "1.0.0",
+    "descripcion": "Seed demo Firestore — importar manualmente o vía Admin SDK"
+  },
+  "cr_producto": [
+    { "id": "PROD-MCP", "codigo": "MCP-01", "nombre": "Microcrédito Productivo", "tasaTea": 28, "plazoMin": 6, "plazoMax": 24 },
+    { "id": "PROD-CONS", "codigo": "CONS-01", "nombre": "Crédito Consumo", "tasaTea": 32, "plazoMin": 12, "plazoMax": 36 }
+  ],
+  "asesores": {
+    "EMP-45821": { "codigo": "EMP-45821", "nombre": "Asesor Demo", "agenciaId": "AG-Ica-01", "activo": true }
+  },
+  "solicitudes_credito_ejemplo": {
+    "documento": "41250677",
+    "expediente": "EXP-2026-00001",
+    "monto": 15000,
+    "plazoMeses": 12,
+    "canal": "cliente",
+    "estado": "enviado",
+    "semaforo": "AMARILLO"
+  },
+  "mora_demo": {
+    "sol-demo-002": { "diasMora": 15, "semaforo": "AMARILLO", "cuotasVencidas": 1 },
+    "sol-demo-003": { "diasMora": 45, "semaforo": "ROJO", "cuotasVencidas": 2 }
+  }
+}

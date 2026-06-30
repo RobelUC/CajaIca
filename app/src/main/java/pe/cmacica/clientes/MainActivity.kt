@@ -14,6 +14,7 @@ import pe.cmacica.clientes.ui.theme.CajaIcaTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppContextHolder.init(this)
         enableEdgeToEdge()
         setContent {
             CajaIcaTheme {
